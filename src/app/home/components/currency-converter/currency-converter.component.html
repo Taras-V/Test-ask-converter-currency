@@ -1,0 +1,38 @@
+<div class="converter">
+  <div class="converter__rates">
+    @for(currency of exchangeRates; track exchangeRates)
+    {
+    <p class="converter__currency-item">{{currency?.cc}}: {{currency?.rate | number: '1.2-2' }}</p>
+    }
+  </div>
+
+  <div class="converter__wrap">
+    <div class="converter__firs-currency">
+      <select class="converter__select" [(ngModel)]="selectedCurrency" (change)="handleCurrencyChange()">
+        @for(currency of exchangeRates; track exchangeRates)
+        {
+        <option [value]="currency?.rate">{{currency?.txt}}</option>
+        }
+        <option [value]="uranianCurrency">Гривня</option>
+      </select>
+
+      <input class="converter__input" type="number" #inputRef (input)="handleInputChange(inputRef.value)">
+    </div>
+
+    <button class="converter__switch-btn" (click)="swapCurrencies()">Змінити місцями валюти</button>
+    <div class="converter__second-currency">
+      <select class="converter__select" [(ngModel)]="selectedCurrency2" (change)="handleCurrencyChange()">
+        @for(currency of exchangeRates; track exchangeRates)
+        {
+        <option [value]="currency?.rate">{{currency?.txt}}</option>
+        }
+        <option [value]="uranianCurrency">Гривня</option>
+      </select>
+
+      <input class="converter__input" type="text" #inputRef2 (input)="handleInputChange2(inputRef2.value)"
+        [value]="inputValue | number: '1.2-2'" [disabled]="isSecondInputDisabled">
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+<div class="header">
+  <div class="header__wrap">
+    <img src="../../../../assets/image/header/iua_logo.svg" alt="logo-image" class="header__logo">
+    <p class="header__greeting">
+      Вітаємо на сторінці актуальних курсів валют!
+    </p>
+    <div class="header__rates">
+      @for(currency of exchangeRates; track exchangeRates)
+      {
+      <img [src]="currency.cc === 'USD'? '../../../../../../assets/image/header/US.svg': '../../../../assets/image/header/EU.svg'" alt="flag" class="header__rates-flag">
+      <p class="header__rates-currency">{{currency?.cc}}: {{currency?.rate | number: '1.2-2' }}</p>
+      }
+    </div>
+  </div>
+</div>

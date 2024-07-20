@@ -1,0 +1,12 @@
+@import '../../../../assets/styles/screen-size.scss';
+
+.footer {
+  height: 4.375rem;
+  background-color: var(--mat-primary-bg-color);
+  border-top: 0.125rem solid var(--primary-border-color);
+
+
+  @media screen and (max-width: $desktop-screen-width) {
+    margin-top: 60px;
+  }
+}
