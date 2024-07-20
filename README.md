@@ -1,6 +1,7 @@
 # CurrencyConverter
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+node -v20.13.1
 
 ## Development server
 
