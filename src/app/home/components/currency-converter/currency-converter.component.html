@@ -29,7 +29,7 @@
         <option [value]="uranianCurrency">Гривня</option>
       </select>
 
-      <input class="converter__input" type="text" #inputRef2 (input)="handleInputChange2(inputRef2.value)"
+      <input class="converter__input" type="text" #inputRef2 (input)="handleInputChange(inputRef2.value, true)"
         [value]="inputValue | number: '1.2-2'" [disabled]="isSecondInputDisabled">
     </div>
 
