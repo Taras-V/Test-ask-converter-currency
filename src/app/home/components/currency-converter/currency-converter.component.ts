@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CurrencyService } from '../services/currency.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,15 +20,15 @@ export class CurrencyConverterComponent implements OnInit {
   public selectedCurrency: number = 0;
   public selectedCurrency2: number = 0;
   public isSecondInputDisabled: boolean = true;
-  public valueFromInput: number= 0;
+  public valueFromInput: number = 0;
 
-  @ViewChild('inputRef') inputRef: any;
+  @ViewChild('inputRef') inputRef!: ElementRef;
 
-  constructor(private currencyService: CurrencyService) {}
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.currencyService.getExchangeCurrency().subscribe(dataCurrency => {
-      dataCurrency.forEach((item: any) => {
+    this.currencyService.getExchangeCurrency().subscribe((dataCurrency: ICurrency[]) => {
+      dataCurrency.forEach((item: ICurrency) => {
         if (item.cc === 'EUR' || item.cc === 'USD' || item.cc === 'PLN') {
           this.exchangeRates.push(item);
         }
@@ -37,17 +37,15 @@ export class CurrencyConverterComponent implements OnInit {
     });
   }
 
-  public handleInputChange(inputValue: any): void {
-    this.valueFromInput = inputValue;
+  public handleInputChange(inputValue: string, reverse: boolean = false): void {
+    this.valueFromInput = parseFloat(inputValue);
 
     if (this.selectedCurrency && this.selectedCurrency2) {
-      this.inputValue = (inputValue * this.selectedCurrency) / this.selectedCurrency2;
-    }
-  }
-
-  public handleInputChange2(inputValue: any): void {
-    if (this.selectedCurrency && this.selectedCurrency2) {
-      this.inputValue = (inputValue * this.selectedCurrency2) / this.selectedCurrency;
+      if (reverse) {
+        this.inputValue = (this.valueFromInput * this.selectedCurrency2) / this.selectedCurrency;
+      } else {
+        this.inputValue = (this.valueFromInput * this.selectedCurrency) / this.selectedCurrency2;
+      }
     }
   }
 
@@ -59,8 +57,8 @@ export class CurrencyConverterComponent implements OnInit {
   }
 
   setDefaultCurrencies(): void {
-    const defaultCurrency1 = this.exchangeRates.find((currency: any) => currency.cc === 'EUR');
-    const defaultCurrency2 = this.exchangeRates.find((currency: any) => currency.cc === 'USD');
+    const defaultCurrency1 = this.exchangeRates.find((currency) => currency.cc === 'EUR');
+    const defaultCurrency2 = this.exchangeRates.find((currency) => currency.cc === 'USD');
 
     if (defaultCurrency1 && defaultCurrency2) {
       this.selectedCurrency = defaultCurrency1.rate;
