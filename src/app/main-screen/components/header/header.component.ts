@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CurrencyService } from '../../../home/components/services/currency.service';
 import { CommonModule } from '@angular/common';
+import { ICurrency } from '../../../home/components/interfaces/currency.interface';
+import { ExchangeRateService } from '../../../home/components/services/exchange-rate.service';
 
 @Component({
   selector: 'app-header',
@@ -11,19 +12,14 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
 
-  public exchangeRates: any = [];
+  public exchangeRates: ICurrency[] = [];
 
-  constructor(private currencyService: CurrencyService) {}
+  constructor(private exchangeRateService: ExchangeRateService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
-    this.currencyService.getExchangeCurrency().subscribe(dataCurrency => {
-      dataCurrency.map((item: any) => {
-        if (item.cc === 'EUR' || item.cc === 'USD') {
-          return this.exchangeRates.push(item);
-        }
-      });
-
+    this.exchangeRateService.getFilteredExchangeRates(['EUR', 'USD']).subscribe((exchangeRates: ICurrency[]) => {
+      this.exchangeRates = exchangeRates
     });
 
   }

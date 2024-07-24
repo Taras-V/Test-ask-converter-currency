@@ -1,36 +1,38 @@
 <div class="converter">
-  <div class="converter__rates">
-    @for(currency of exchangeRates; track exchangeRates)
-    {
-    <p class="converter__currency-item">{{currency?.cc}}: {{currency?.rate | number: '1.2-2' }}</p>
-    }
-  </div>
 
-  <div class="converter__wrap">
+  <app-currency-rates [exchangeRates]="exchangeRates" ></app-currency-rates>
+
+  <div class="converter__wrap" [formGroup]="form">
+
     <div class="converter__firs-currency">
-      <select class="converter__select" [(ngModel)]="selectedCurrency" (change)="handleCurrencyChange()">
-        @for(currency of exchangeRates; track exchangeRates)
-        {
-        <option [value]="currency?.rate">{{currency?.txt}}</option>
-        }
-        <option [value]="uranianCurrency">Гривня</option>
-      </select>
+      <app-currency-select
+        formControlName="firstCurrency"
+        [currencies]="exchangeRates"
+        [uranianCurrency]="uranianCurrency">
+      </app-currency-select>
 
-      <input class="converter__input" type="number" #inputRef (input)="handleInputChange(inputRef.value)">
+      <app-currency-input
+        formControlName="firstValue">
+      </app-currency-input>
     </div>
 
-    <button class="converter__switch-btn" (click)="swapCurrencies()">Змінити місцями валюти</button>
-    <div class="converter__second-currency">
-      <select class="converter__select" [(ngModel)]="selectedCurrency2" (change)="handleCurrencyChange()">
-        @for(currency of exchangeRates; track exchangeRates)
-        {
-        <option [value]="currency?.rate">{{currency?.txt}}</option>
-        }
-        <option [value]="uranianCurrency">Гривня</option>
-      </select>
+    <button
+      class="converter__switch-btn"
+      (click)="swapCurrencies()">
+      Змінити місцями валюти
+    </button>
 
-      <input class="converter__input" type="text" #inputRef2 (input)="handleInputChange(inputRef2.value, true)"
-        [value]="inputValue | number: '1.2-2'" [disabled]="isSecondInputDisabled">
+    <div class="converter__second-currency">
+      <app-currency-select
+        formControlName="secondCurrency"
+        [currencies]="exchangeRates"
+        [uranianCurrency]="uranianCurrency">
+      </app-currency-select>
+
+      <app-currency-input
+        formControlName="secondValue"
+        [isDisabled]="true">
+      </app-currency-input>
     </div>
 
   </div>

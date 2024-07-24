@@ -1,0 +1,31 @@
+@import '../../../../assets/styles/screen-size.scss';
+
+.currency-input {
+  max-width: 10.625rem;
+  padding: 0.625rem;
+  margin: 0.625rem 0;
+  box-sizing: border-box;
+  border: 0.0625rem solid var(--primary-border-input-color);
+  border-radius: 0.25rem;
+  background-color: var(--background-input-color);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:focus {
+    border-color: var(--focus-input-color);
+    box-shadow: 0 0 0.5rem var(--box-shadow-input-color);
+    outline: none;
+  }
+}
+
+@media screen and (max-width: $mobile-screen-width) {
+  .currency-input {
+    max-width: 9rem;
+  }
+}
+
+@media screen and (max-width: $old-mobile-screen-width) {
+  .currency-input {
+    max-width: 7.5rem;
+  }
+}

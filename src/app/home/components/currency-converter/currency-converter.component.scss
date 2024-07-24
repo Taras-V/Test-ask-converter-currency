@@ -3,55 +3,11 @@
 .converter {
   margin-top: 3.125rem;
 
-  &__rates {
-    display: flex;
-    justify-content: center;
-    gap: 1.5625rem;
-  }
-
-  &__currency-item {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--currency-color);
-    padding: 1.875rem 1.25rem;
-    border: solid 0.125rem var(--secondary-color);
-  }
-
   &__wrap {
     margin-top: 3.125rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  &__select,
-  &__input {
-    max-width: 10.625rem;
-    padding: 0.625rem;
-    margin: 0.625rem 0;
-    box-sizing: border-box;
-    border: 0.0625rem solid var(--primary-border-input-color);
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-
-    &:focus {
-      border-color: var(--focus-input-color);
-      box-shadow: 0 0 0.5rem var(--box-shadow-input-color);
-      outline: none;
-    }
-  }
-
-  &__select {
-    margin-right: 1.25rem;
-    background-color: var(--classic-background-color);
-    padding-right: 1.875rem;
-    background-repeat: no-repeat;
-    background-position: right 0.625rem center;
-  }
-
-  &__input {
-    background-color: var(--background-input-color);
   }
 
   &__switch-btn {
@@ -83,38 +39,13 @@
       font-size: 1rem;
       padding: 0.9375rem 0.625rem;
     }
-
-    &__select,
-    &__input {
-      max-width: 9rem;
-    }
   }
 }
 
 @media screen and (max-width: $old-mobile-screen-width) {
   .converter {
-
     &__wrap {
       margin-top: 1.75rem;
-    }
-
-    &__rates {
-      gap: 0.9375rem;
-    }
-
-    &__currency-item {
-      font-size: 0.875rem;
-      padding: 0.625rem 0.375rem;
-    }
-
-    &__input {
-      max-width: 7.5rem;
-
-    }
-
-    &__select {
-      font-size: 0.75rem;
-      max-width: 9rem;
     }
   }
 }

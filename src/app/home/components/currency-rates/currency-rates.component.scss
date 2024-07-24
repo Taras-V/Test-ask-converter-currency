@@ -1,0 +1,35 @@
+@import '../../../../assets/styles/screen-size.scss';
+
+.currency-rates {
+  display: flex;
+  justify-content: center;
+  gap: 1.5625rem;
+
+  &__item {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--currency-color);
+    padding: 1.875rem 1.25rem;
+    border: solid 0.125rem var(--secondary-color);
+  }
+}
+
+@media screen and (max-width: $mobile-screen-width) {
+  .currency-rates {
+    &__item {
+      font-size: 1rem;
+      padding: 0.9375rem 0.625rem;
+    }
+  }
+}
+
+@media screen and (max-width: $old-mobile-screen-width) {
+  .currency-rates {
+    gap: 0.9375rem;
+
+    &__item {
+      font-size: 0.875rem;
+      padding: 0.625rem 0.375rem;
+    }
+  }
+}

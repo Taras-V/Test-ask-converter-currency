@@ -1,0 +1,6 @@
+<div class="currency-rates">
+  @for(currency of exchangeRates; track exchangeRates)
+   {
+  <p class="currency-rates__item">{{currency?.cc}}: {{currency?.rate | number: '1.2-2' }}</p>
+  }
+</div>

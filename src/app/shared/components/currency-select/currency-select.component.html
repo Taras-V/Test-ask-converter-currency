@@ -1,0 +1,6 @@
+<select class="currency-select" [ngModel]="selectedCurrency" (ngModelChange)="onChangeSelect($event)">
+  @for (currency of currencies; track currencies) {
+  <option [value]="currency.rate">{{ currency.txt }}</option>
+  }
+  <option [value]="uranianCurrency">Гривня</option>
+</select>
